@@ -87,9 +87,32 @@
 
 		\subsubsection{Shared Modulus}
 
+		Shared modulus attacks are a specific variant of Man-in-the-Middle attacks, where several clients are communicating with a single server Each of these clients use the same modulus in their keys, though they use different values for $\cp$ and $\cq$.\\
+		\\
+		This attack requires the same plaintext to be sent to 2 different clients. We can then do some mathsy stuff after intercepting both ciphertexts to recover the message. This attack can be avoided by never sending the same plaintext to any two clients.
+
 		\subsubsection{Small Exponent}
 
-		\subsubsection{Determinism}
+		This is a similar attack, but instead of requiring a shared modulus it requires the public key exponents to be `small'. `Small', in this context, is quite a vague term, and I don't imagine they'll ask us to pick a number.\\
+		\\
+		Essentially, the adversary waits for the server to send 3 clients (i, j and k) the same message, and intercepts all three ciphertexts. Because of the voodoo of the CRT, the adversary can do this:\\
+		$$
+		x \equiv \blue{C_{i}} \mod (\blue{N_{i}})
+		$$
+		$$
+		x \equiv \blue{C_{j}} \mod (\blue{N_{j}})
+		$$
+		$$
+		x \equiv \blue{C_{k}} \mod (\blue{N_{k}})
+		$$\\
+		And derive this:\\
+		$$
+		x \equiv \red{M}^{3} \mod (\blue{N_{i} \cdot N_{j} \cdot N_{k}})
+		$$\\
+		Handily, because a message is always less than a modulus, this means we simply calculate the cube root of $x$ (which will be an integer) to get the original message! BOOM!
+
+		% \subsubsection{Determinism}
+		% DO WE REALLY NEED THIS?
 
 \section{Signatures}
 	\subsection{What Is A Signature anyway?}
