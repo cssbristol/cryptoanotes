@@ -38,6 +38,15 @@
 		\item IND-CPA must be OW-CPA. The problem of OW-CPA is to decrypt a ciphertext with an encryption oracle. The problem of IND-CPA is to distinguish one ciphertexts from two messages given an encryption oracle. If we have a method to break OW-CPA then we can use this to break IND-CPA, therefore IND-CPA can be reduced to OW-CPA.
 		\item No
 		\item :S
-		\item Add stuff on end, decrypt, get rid of stuff. Because the encryption only uses the context of the previous 
-		\item 
+		\item Add stuff on end, decrypt, get rid of stuff. Because the encryption only uses the context of the previous blocks. Need MAC to make strong.
+		\item Probabilistic, but still only reliant on previous blocks (though in this case not the values of the blocks, just the number of blocks). Attack approach same as above; simply add a block on the end and then ask them to decrypt $m+block$.
+		\item Literally just send a message starting with a 1, and a message starting with a 0. The result leaks this!
+		\item This means we can decrypt two ciphertexts into one message; so we just flip the bit of the generated ciphertext and decrypt that.
+	\end{itemize}
+
+\section{Problem Class 4}
+	\begin{itemize}
+		\item CBC-MAC is like CBC but we completely discard every block but the last. That last block is what we use as the MAC. The proposed CFB mode's last block would be identical to the CBC-MAC due to the similar nature through which they work.
+
+
 	\end{itemize}
