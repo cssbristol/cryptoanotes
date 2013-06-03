@@ -339,8 +339,19 @@
     So, what's Rcon I hear you cry? Never fear, I shall explain, though Martijn's slide gloss over this so if you're struggling to remember things as it is \textbf{just remember the above}. The Rcon function is simply defined as the following operation in the Rijndael finite field:
     $$ rcon(i) = x^{i-1} $$
     So this is in effect, another S-Box! Just as with the AES S-Box, we simply use it like a lookup table, hence the square bracket notation in the algorithm.
-    \subsection{Why?}
     
+        \subsection{Why?}
+        Basically, the Multiplicative Inverse adds a non-linear component (the only component in the S-Box) and the linear map removes stationary points (when $\mathbb{S}(n)=n$).\\
+        \\
+        Remember differential analysis looks at how many times a difference in input causes a difference in output. So, we want to make a table that shows how many times $\Delta y = f(x) \oplus f(x+\Delta x)$ holds for the pair $(\Delta x, \Delta y)$, in the finite field $\mathbb{F}_{(2^8)}$.\\
+        \\
+        \textbf{Multiplicative Inverse}: Lets look at a function $f(x) = 1/x$. This means we want to find
+        \begin{equation}
+            \Delta y = \frac{1}{x} \oplus \frac{1}{x+\Delta x}
+        \end{equation}
+        So we can bring up the denominators, we we say that $x \neq 0$ and $x+\Delta x \neq 0$.
+
+
 \section{Message Authentication}
     \subsection{Why Do This}
         Encrypting data provides confidentiality (remember the three goals), but does not provide authenticity or integrity without additional sauce. This is the additional sauce that provides \textbf{integrity}.
