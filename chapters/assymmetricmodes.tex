@@ -115,32 +115,24 @@
 		% DO WE REALLY NEED THIS?
 
 \section{Signatures}
-	\subsection{What Is A Signature anyway?}
+	\subsection{What Is A Signature Anyway?}
 	A signature in this context is a way of providing Authenticity for a message. Where a MAC can validate the integrity of a message, a signature can validate who sent it. You generate a signature from a private key, and check it against a public key.\\
 	\\
-	E.G If Alice wants to prove she sent Bob a message, she generates a signature using her private key, and then Bob can check the resulting signature against Alice's public key.
+	E.g. If Alice wants to prove she sent Bob a message, she generates a signature using her private key, and then Bob can check the resulting signature against Alice's public key.
 
 	\subsection{So How Do You Sign Stuff?}
-	A signature scheme is uses three algorithms; a key generation algorithm, a signing algorithm and a verification algorithm.
+	A signature scheme uses three algorithms; a key generation algorithm, a signing algorithm and a verification algorithm.
 	\begin{itemize}
-	\item \textbf{Key Generation}: Returns two keys, a poublic and private one. The public one is the \textcolor{B}{verification key}, which I'll call \textcolor{B}{vk} because that's what the notes have and I'm original like that. The private one is the \textcolor{R}{signing key} which, again, I'll call \textcolor{R}{sk} because the notes...nevermind.
+	\item \textbf{Key Generation}: Returns two keys, a public and private one. The public one is the \textcolor{B}{verification key}, which I'll call \textcolor{B}{vk} because that's what the notes have and I'm original like that. The private one is the \textcolor{R}{signing key} which, again, I'll call \textcolor{R}{sk} because the notes...never mind.
 	\item \textbf{Signing}: Takes \textcolor{R}{sk} and the message and creates a signature \textcolor{B}{s}.
 	\item \textbf{Verification}: Takes \textcolor{B}{s} and \textcolor{B}{vk} and checks if it all works out.
 	\end{itemize}
 
-	\subsection{`Plain RSA'}
-	The signature scheme presented in the course is called \textbf{plain RSA}. It is, happily, fairly straightforward.\\
+	\subsection{Vanilla RSA Signature Scheme}
+	The signature scheme presented in the course is called \textbf{vanilla RSA}. It is, happily, fairly straightforward, and covered in a previous chapter. To use vanilla RSA as a signature scheme isn't too different from how it operates as a cipher, so we will just cover the differences.\\
 	\\
 	\textbf{Key Generation}:
-	\begin{enumerate}
-	\item Generate two large primes, \textcolor{R}{p} and \textcolor{R}{q}. We're talking at least 512 bits of primage here.
-	\item Compute $\cN = \cp \cdot \cq$
-	\item Select a random integer, let's call it $\ce$, that satisfies
-	$$\text{gcd}(\ce, \phi(\cN)) = 1$$
-	\item Then, using the XGCD or somesuch, compute the inverse of $\ce$ in the group of remainders mod $\phi{\cN}$. That is find $\cd$ such that $\ce \cdot \cd = 1 \mod \phi{\cN}$.
-	\end{enumerate}
-
-	And voila, you have a public key consisting of $\cN$ and $\ce$, with a private key consisting of $\cd$, $\cp$ and $\cq$.\\
+	Identical to RSA, save for what information we keep and thus \textit{use} as the keys. In the RSA signature scheme, you have a public key consisting of $\cN$ and $\ce$, and a private key consisting of $\cd$, $\cp$ and $\cq$.\\
 	\\
 	\textbf{Signing}:
 	Really simple. $\csig = \cm^{\cd}\mod \cN$. Then you just send $\csig$ along with $\cc$.\\
