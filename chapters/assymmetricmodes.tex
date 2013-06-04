@@ -118,7 +118,10 @@
 	\subsection{What Is A Signature Anyway?}
 	A signature in this context is a way of providing Authenticity for a message. Where a MAC can validate the integrity of a message, a signature can validate who sent it. You generate a signature from a private key, and check it against a public key.\\
 	\\
-	E.g. If Alice wants to prove she sent Bob a message, she generates a signature using her private key, and then Bob can check the resulting signature against Alice's public key.
+	E.g. If Alice wants to prove she sent Bob a message, she generates a signature using her private key, and then Bob can check the resulting signature against Alice's public key.\\
+	\\
+	Basically, a signature is another ciphertext, with a different key. %Is it? I mean, IS IT? I COULD BE WRONG HERE?!?!? AAHAHAHAHHAHAHAHAHAHAHAHAHA
+	Both decryptions have to be correct for the message to be considered authentic.
 
 	\subsection{So How Do You Sign Stuff?}
 	A signature scheme uses three algorithms; a key generation algorithm, a signing algorithm and a verification algorithm.
@@ -140,9 +143,13 @@
 	\textbf{Verification}:
 	Also pretty simple. You decrypt $\cc$ into $\cm$ as normal, and then test if $\cm = \csig^{\ce}\mod \cN$. If it is, then the message is authentic.
 
-	\subsection{Lemme Sum Up}
-	Basically, a signature is another ciphertext, with a different key. %Is it? I mean, IS IT? I COULD BE WRONG HERE?!?!? AAHAHAHAHHAHAHAHAHAHAHAHAHA
-	Both decryptions have to be correct for the message to be considered authentic.
+	\subsection{Hash-Then-Sign Signatures}
+		`Hash then sign' signatures are pretty much what they say on the tin. It's not a scheme, rather a description for a collection of signature schemes. The process is identical to a regular signature scheme, except we replace $\cm$ with $H(\cm)$ in the signing and verifying steps.\\
+		\\
+		If $H$ is collision resistant, and the original \textit{(Kg, Sign, Vrfy)} scheme was EUF-CMA\footnote{What is this? Not in other slides. Suffice to say it means `secure' perhaps.}, then the new scheme is EUF-CMA.
+
+	\subsection{Full Domain Hash Signatures}
+		This scheme is an application of the `hash then sign' style signature scheme. The signing process is to perform the \textbf{inverse} of a trapdoor function on $H(\cm)$, for which $\csk$ is required. Verification is then achieved by applying the forwards trapdoor function to the signature, for which $\cpk$ is required, and comparing the output with the actual hash of the message.
 
 \section{Hybrid Encryption}
 	A hybrid scheme is one which makes use of both symmetric and asymmetric encryption schemes. Generally, an asymmetric system is used to transmit a symmetric key which is then used to send messages.\\
