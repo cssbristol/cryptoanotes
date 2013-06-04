@@ -37,7 +37,7 @@
 \\
 	If we have the extra special benefit of commutativity in our operation, ie $x*y = y*x$, then this is an `\textbf{Abelian Group}' (sometimes just called a `commutative group').\\
 \\
-    Groups can sometimes be defined in terms of generators. We say that $g \in G$ is a generator for $(G,*)$ iff we can write $G = \{e,g,g^1,g^2,g^3,...\}$. This differs from the idea of a generating set which does not appear to be part of this course, but if you're interested, then we say that $S\subseteq G$ is a generating subset of $G$ iff $G$ can be expressed using only finite products of elements of $S$ and their inverses.
+    Groups can sometimes be defined in terms of \textbf{generators}. We say that $g \in G$ is a generator for $(G,*)$ iff we can rebuild $G$ exclusively from $g^n$, with various $n$, where $n$ is a natural number. This differs from the idea of a generating set which does not appear to be part of this course, but if you're interested, then we say that $S\subseteq G$ is a generating subset of $G$ iff $G$ can be expressed using only finite products of elements of $S$ and their inverses.
 
     \subsection{Rings}
     In fact, we can define both the addition and multiplication operations in $\mathbb{Z}/N\mathbb{Z}$. Rather than defining two seperate groups, we combine the two into a new thing called a `ring'. A ring in this context is a set with operations for addition and multiplication, with all the properties you might expect.\\
@@ -87,7 +87,7 @@
             $$ a^p \equiv a \mod p $$
         
     \section{Fields}
-        A field is a special variety of \textbf{abelian ring}. Where a ring's second (multiplicative) operation doesn't need to have an inverse for every non-zero element, a field's does. 
+        A field is a special variety of \textbf{abelian ring}. Whereas a ring's second (multiplicative) operation doesn't need to have an inverse for every non-zero element, a field's does. 
     
     \section{Chinese Remainder Theorem}
         The Chinese Remainder Theorem, often written CRT, states that given a modulus $N$, made up of pairwise coprime factors $n_1$, ..., $n_r$, it is possible to calculate $x = y \mod N$ by instead calculating modulo its component parts, $n_1$, ..., $n_r$ and the combining those parts using some clever maths we'll get onto in a moment. This isn't particularly useful with small $N$, but you can imagine when your $N$ and $x$ are in the $2^{1024}$ range, and you're performing modular exponentiation it has some performance implications.\\
@@ -107,6 +107,10 @@
         \\
         There is a special subset of one way functions, known as \textbf{trapdoor one way functions}. These are so named because, while reversing them naively is infeasible, given some extra \textbf{trapdoor information}, they are \textbf{easily inverted}. An example of such a function would be the RSA algorithm, where deducing $\cm$ from $\cc$ is impossible without the necessary trapdoor information, which in the case of RSA is the private key.
 
+    \section{SQROOT Problem}
+        The square root problem, often written SQROOT, is that it is bloody difficulty to find $x$ where:
+            $$y \mod N =  x * x \mod N $$
+        Even when $y$ and $N$ are known, without knowing $N$'s factors.
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
