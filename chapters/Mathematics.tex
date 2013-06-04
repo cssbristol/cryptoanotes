@@ -67,7 +67,7 @@
     \section{Euler Phi Function}
     Also known as Euler's Totient Function. Because why the hell not. It is simply a measure of how many members of our set of remainders are \textbf{relatively prime} to N. In other words, how many members share no common factors with N. If we choose N to be prime, which we normally do, then $\phi(N) = N - 1$. Easy, right?\\
     \\
-    The other important case for cryptography is where we are using two primes ($p$ and $q$) to create a new modulus:
+    The other important case for cryptography is where $N$ is made from two prime factors ($p$ and $q$). In this case $N$'s Euler Phi is more simply defined thus:
     $$ \phi(p \cdot q) = (p-1)(q-1)$$
     Since you are undoubtedly on a roll, here is the actual formula (it's not too scary); the first is the prime factorization of N, which we need.
 
