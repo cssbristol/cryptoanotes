@@ -49,12 +49,16 @@
 	\begin{enumerate}
 		\item CBC-MAC is like CBC but we completely discard every block but the last. That last block is what we use as the MAC. The proposed CFB mode's last block would be identical to the CBC-MAC due to the similar nature through which they work.
 		\item Collision resistance implies 2nd preimage resistance because intuitively 2nd preimage resistance is reducible to collision resistance; that is to say it is no harder than collision. If, an adversary can't find ANY two inputs that hash to the same output, then given an input, they aren't going to be able to find a second input that hashes to the same. However, for 1st preimage, they don't need to find a \textit{second} input, just \textit{one input}. While its unlikely that'll be easy, its not guaranteed to be as hard either.
-		\item :S
+		\item (?? Maybe ??) $MAC(m||m') = h(MAC(m)|m')$, that is, a MAC generally operates in a block mode, ignoring all but the last blocks output. So to calculated the MAC of $m||m'$ we are in effect taking the the MAC of $m$ and `carrying on' with each block of $m'$.
 	\end{enumerate}
 
 \section{Problem Class 5}
 	\begin{enumerate}
 		\item
+		$$ 24140 = 1 * 16762 + 7378 $$
+		$$ 16762 = 2 * 7378 + 2006 $$
+		$$ \cdots $$
+		$$ 68 = 2 * \mathbf{34} + 0 $$
 		\item
 		\item
 		\item
