@@ -108,10 +108,9 @@ One-wayness is the property that an attacker, with only the ciphertext, \textbf{
         \label{fig:ow-sec-sym}
     \end{subfigure}
     ~
-    % TODO: This game is identical to public key IND-Security. Somethings not right here.
     \begin{subfigure}[b]{0.4\textwidth}
         \centering
-        \begin{cryptogame}{$b\in \{0,1\}$}
+        \begin{cryptogame}{$\cm\in \mathbb{P}$}
             \cgameright{$\cpk$}
             \cgameleft{$\ccast = \textrm{Enc}_\csk(\red{m})$}
             \cgameleft{$m'$}
@@ -146,10 +145,9 @@ We can make comparisons of problems by reducing one to another, thereby defining
     \label{fig:relations}
 \end{figure}
 \\
-Some attacks are more powerful than others. Figure~\ref{fig:relations} show these relationships between the attacks. An arrow ($A \rightarrow B$) means $A$ is more powerful than $B$ and thus a proof that a system meets $A$'s notion of security, also proves it meets $B$'s.\\
+Some crypto games are harder to beat than others. Figure~\ref{fig:relations} show these relationships between the attacks. An arrow ($A \rightarrow B$) means $A$ is harder to beat, and thus more powerful, than $B$ and thus a proof that a system meets $A$'s notion of security, also proves it meets $B$'s.\\
 \\
-\textbf{IND-CCA is the de-facto} security definition we should accept. This means that the encryption must be probabilistic (i.e. encryption is a one-to-many function) because it could ask the oracle to encrypt $m_0$ and from that could win the game.
-
+\textbf{IND-CCA is the de-facto} security definition we should accept. To pass IND-CCA, an encryption scheme must be probabilistic (i.e. encryption is a one-to-many function), and it must implement a MAC scheme to make utilising the decryption oracle on slightly modified $c$ (because we are not allowed to use it on $c$) impossible.
 
 \section{Stream Ciphers}
 The idea behind a stream cipher is to replace the (possibly) huge cipher needed for the One-Time-Pad scheme by a pseudo-random sequence which is `seeded' by a key of a more practical size. There's some confusion over whether the term `stream cipher' refers to the algorithm generating the stream or the entire encryption scheme. The term can mean both, but the book accompanying the unit recommends you only use it for the algorithm.\\
