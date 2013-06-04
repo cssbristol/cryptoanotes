@@ -65,7 +65,7 @@ Figure~\ref{fig:ind-sec-sym} shows the cryptographic game which captures this fo
     \begin{subfigure}[b]{0.4\textwidth}
         \centering
         \begin{cryptogame}{$b\in \{0,1\}$}
-            \cgameleft{$\csubm{m},\csubm{m}$}
+            \cgameleft{$\csubm{0},\csubm{1}$}
             \cgameright{$\ccast=\textrm{Enc}_\ck(\csubm{b})$}
             \cgameleft{$b'$}
         \end{cryptogame}
@@ -113,9 +113,8 @@ One-wayness is the property that an attacker, with only the ciphertext, \textbf{
         \centering
         \begin{cryptogame}{$b\in \{0,1\}$}
             \cgameright{$\cpk$}
-            \cgameleft{$\csubm{0},\csubm{1}$}
-            \cgameright{$\ccast=\textrm{Enc}_{\csk}(\csubm{b})$}
-            \cgameleft{$b'$}
+            \cgameleft{$\ccast = \textrm{Enc}_\csk(\red{m})$}
+            \cgameleft{$m'$}
         \end{cryptogame}
         \caption{Public Key Case}
         \label{fig:ow-sec-pub}
