@@ -37,7 +37,8 @@
 	\begin{enumerate}
 		\item IND-CPA must be OW-CPA. The problem of OW-CPA is to decrypt a ciphertext with an encryption oracle. The problem of IND-CPA is to distinguish one ciphertexts from two messages given an encryption oracle. If we have a method to break OW-CPA then we can use this to break IND-CPA, therefore IND-CPA can be reduced to OW-CPA.
 		\item No
-		\item :S
+		\item Every time we use the KEM we get a new key, so an encryption oracle would be meaningless, every time you call the oracle you get a new DEM key. We could have an oracle but it would be meaningless and not helpful.
+
 		\item Add stuff on end, decrypt, get rid of stuff. Because the encryption only uses the context of the previous blocks. Need MAC to make strong.
 		\item Probabilistic, but still only reliant on previous blocks (though in this case not the values of the blocks, just the number of blocks). Attack approach same as above; simply add a block on the end and then ask them to decrypt $m+block$.
 		\item Literally just send a message starting with a 1, and a message starting with a 0. The result leaks this!
@@ -48,12 +49,16 @@
 	\begin{enumerate}
 		\item CBC-MAC is like CBC but we completely discard every block but the last. That last block is what we use as the MAC. The proposed CFB mode's last block would be identical to the CBC-MAC due to the similar nature through which they work.
 		\item Collision resistance implies 2nd preimage resistance because intuitively 2nd preimage resistance is reducible to collision resistance; that is to say it is no harder than collision. If, an adversary can't find ANY two inputs that hash to the same output, then given an input, they aren't going to be able to find a second input that hashes to the same. However, for 1st preimage, they don't need to find a \textit{second} input, just \textit{one input}. While its unlikely that'll be easy, its not guaranteed to be as hard either.
-		\item :S
+		\item (?? Maybe ??) $MAC(m||m') = h(MAC(m)|m')$, that is, a MAC generally operates in a block mode, ignoring all but the last blocks output. So to calculated the MAC of $m||m'$ we are in effect taking the the MAC of $m$ and `carrying on' with each block of $m'$.
 	\end{enumerate}
 
 \section{Problem Class 5}
 	\begin{enumerate}
 		\item
+		$$ 24140 = 1 * 16762 + 7378 $$
+		$$ 16762 = 2 * 7378 + 2006 $$
+		$$ \cdots $$
+		$$ 68 = 2 * \mathbf{34} + 0 $$
 		\item
 		\item
 		\item
