@@ -506,8 +506,8 @@
     \subsection{Hashing}
     Like we said, hashing in this case is just an efficient function mapping arbritrarily long binary strings to fixed length binary strings. Simples.\\
     \\
-    Incidentally, these hashes are essentially MCDs, though they are not called that now. Used to be the case that you'd do a hash (MDC), concatenate it to the message and then encrypt that. The problem with a concatenate-then-encrypt scheme under CBC is that an attacker can create a message that consists of the message they wish to send, a hash for it, and then some other random guff, and then hash that (this is a CPA method). If the attack then truncates the resulting ciphertext they get their valid target ciphertext, complete with hash.\\
-    % TODO: EXPLAIN THIS BETTER DRUMMOND YOU CRAZY MAN.
+    Incidentally, hash functions are also known as MDCs (manipulation detection codes). To use the for this purpose, you hash your message, concatenate it to the message and then encrypt that. The problem with a concatenate-then-encrypt scheme under CBC is that an attacker can create a message that consists of the message they wish to send, a hash for it, and then some other random guff, and encrypt that (this is a CPA method). If the attack then truncates the resulting ciphertext they get their valid target ciphertext, complete with hash.\\
+    % TODO: As drum said here before, this section be crazy, particularly the last sentence. I'm not even sure its correct?
     \\
     While earlier we talked about hashing with a key, in practice hash functions don't have a key. It is often simpler to consider a family of functions, and require three conditions of them:
     \begin{enumerate}
@@ -523,7 +523,7 @@
     \begin{itemize}
         \item With prefixing it is possible to calculate $MAC_{\ck}(\cm||\cm^{'})$ without knowing the key. Simply split your intended message in half, and you're good to go. Exact method not shown in notes.
         \item Suffixing suffers from a weakness that makes it easier to find collisions in the hash function; this can be done offline, as well, so you do not need to send lots of queries to the target. Exact methodology not disclosed in notes.
-        \item Envelope method with padding: The reason this isn't secure isn't given in the notes, and I can't find it online. % TODO: SOMEONE HELP ME OH GOD PLEASE
+        \item Envelope method with padding: The reason this isn't secure isn't given in the notes, so chillax man!
     \end{itemize}
     It is better to use HMAC (keyed-\textbf{H}ash \textbf{M}essage \textbf{A}uthentication \textbf{C}ode):
     $$HMAC_{\ck}(\cm) = h(\ck||p_{1}||h(\ck||p_{2}||\cm))$$
