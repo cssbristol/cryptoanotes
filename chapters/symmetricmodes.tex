@@ -293,6 +293,7 @@
             }
             SubBytes($S$);\\
             ShiftRows($S$);\\
+            AddRoundKey($S$,$K_{10}$);\\
             \caption{AES}
             \label{alg:aes}
         \end{algorithm}
